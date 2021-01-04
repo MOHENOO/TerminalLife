@@ -1,3 +1,4 @@
 - hosts: pc
   roles:
+    - andrewrothstein.starship
     - deployment
