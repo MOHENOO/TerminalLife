@@ -1,2 +1,6 @@
 [pc]
-localhost
+127.0.0.1
+
+[pc:vars]
+ansible_connection=local
+
