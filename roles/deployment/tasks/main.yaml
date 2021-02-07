@@ -30,11 +30,11 @@
     depth: 1
     force: yes
 
-- name: Install apps with apt
+- name: Install apps with dnf
   become: yes
-  apt: 
+  dnf: 
     update_cache: yes
-    name: ['subversion', 'thefuck', 'pipenv', 'neovim', 'tmux', 'tmuxinator', 'zsh', 'gpg', 'coreutils', 'curl', 'wget','aria2', 'emacs', 'build-essential' , 'zlib1g-dev', 'libncurses5-dev', 'libgdbm-dev', 'libnss3-dev', 'libssl-dev', 'libreadline-dev' ,'libffi-dev', 'libbz2-dev', 'libsqlite3-dev', 'silversearcher-ag', 'ripgrep', 'fd-find']
+    name: ['subversion', 'thefuck', 'pipenv', 'neovim', 'tmux', 'zsh', 'gpg', 'coreutils', 'curl', 'wget','aria2', 'emacs', 'openssl-devel', 'bzip2-devel', 'libffi-devel', 'readline-devel', 'sqlite-devel', '@c-development', 'exa', 'util-linux-user']
   # ignore_errors: yes
 
 - name: ln my configs.
