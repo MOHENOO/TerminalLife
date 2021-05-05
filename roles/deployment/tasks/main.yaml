@@ -36,6 +36,17 @@
     update_cache: yes
     name: ['subversion', 'thefuck', 'pipenv', 'neovim', 'tmux', 'tmuxinator', 'zsh', 'gpg', 'coreutils', 'curl', 'wget','aria2', 'emacs', 'build-essential' , 'zlib1g-dev', 'libncurses5-dev', 'libgdbm-dev', 'libnss3-dev', 'libssl-dev', 'libreadline-dev' ,'libffi-dev', 'libbz2-dev', 'libsqlite3-dev', 'silversearcher-ag', 'ripgrep', 'fd-find']
   # ignore_errors: yes
+  #
+
+- name: Install exa with http
+  become: yes
+  apt:
+    deb: http://th.archive.ubuntu.com/ubuntu/pool/universe/r/rust-exa/exa_0.9.0-4_amd64.deb
+
+- name: mkdir .config
+  file:
+    path: ~/.config
+    state: directory
 
 - name: ln my configs.
   file:
@@ -61,6 +72,9 @@
     - 'asdf install python 2.7.18'
     - "bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'"
     - 'asdf install nodejs latest'
+    - 'asdf global python 2.7.18 `asdf latest python`'
+    - 'asdf global golang `asdf latest golang`'
+    - 'asdf global nodejs `asdf latest nodejs`'
 
 - name: Install python package.
   pip:
