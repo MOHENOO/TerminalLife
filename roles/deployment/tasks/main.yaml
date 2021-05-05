@@ -24,23 +24,28 @@
 
 - name: Tab homebrew repository
   homebrew_tap:
-    name: ['d12frosted/emacs-plus','homebrew/cask-fonts']
+    name: ['railwaycat/emacsmacport','homebrew/cask-fonts']
 
 - name: Install apps with homebrew
   homebrew: 
-    name: ['svn', 'thefuck', 'asdf', 'pipenv', 'neovim', 'tmux', 'tmuxinator', 'starship', 'zsh', 'minikube', 'exa', 'fd', 'ag', 'rg', 'squirrel', 'gpg', 'coreutils', 'curl', 'wget','aria2', 'koekeishiya/formulae/yabai', 'koekeishiya/formulae/skhd']
+    name: ['svn', 'thefuck', 'asdf', 'pipenv', 'neovim', 'tmux', 'tmuxinator', 'starship', 'zsh', 'minikube', 'exa', 'bat', 'fd', 'ag', 'rg', 'gpg', 'coreutils', 'curl', 'wget','aria2', 'koekeishiya/formulae/yabai', 'koekeishiya/formulae/skhd']
     state: present
 
-- name: Install emacs-plus with homebrew
+- name: Install emacs-mac with homebrew
   homebrew: 
-    name: emacs-plus@28
-    options: with-no-titlebar,with-spacemacs-icon
+    name: emacs-mac
+    options: with-spacemacs-icon,with-no-title-bars
     state: present
 
 - name: Install apps with homebrew_cask
   homebrew_cask: 
-    name: ['alfred', 'google-chrome', 'kitty', 'squirrel', 'sportify', 'openconnect-gui', 'feishu', 'notion', '1password', 'font-meslo-lg-nerd-font', 'font-fira-code-nerd-font', 'font-sauce-code-pro-nerd-font']
+    name: ['alfred', 'google-chrome', 'kitty', 'spotify', 'openconnect-gui', 'feishu', 'notion', '1password', 'font-meslo-lg-nerd-font', 'font-fira-code-nerd-font', 'font-sauce-code-pro-nerd-font', 'avibrazil-rdm', 'dropbox']
     state: present
+
+- name: mkdir .config
+  file:
+    path: ~/.config
+    state: directory
 
 - name: ln my configs.
   file:
@@ -60,6 +65,7 @@
 
 - name: Config yabai and skhd
   shell: "{{ item }}"
+  ignore_errors: yes
   loop:
     - 'sudo yabai --install-sa'
     - 'brew services restart yabai'
@@ -77,3 +83,8 @@
     - 'asdf install python 2.7.18'
     - "bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'"
     - 'asdf install nodejs latest'
+    - 'asdf global python 2.7.18 `asdf latest python`'
+    - 'asdf global golang `asdf latest golang`'
+    - 'asdf global nodejs `asdf latest nodejs`'
+    - 'compaudit | xargs chmod g-w'
+    - 'source ~/.zshrc'
