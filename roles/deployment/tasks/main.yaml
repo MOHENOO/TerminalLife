@@ -14,14 +14,6 @@
     depth: 1
     force: yes
 
-- name: Install spacemacs for emacs
-  git:
-    repo: https://github.com/syl20bnr/spacemacs
-    dest: ~/.emacs.d
-    version: develop
-    depth: 1
-    force: yes
-
 - name: Install asdf
   git:
     repo: https://github.com/asdf-vm/asdf.git
@@ -35,8 +27,7 @@
   apt: 
     update_cache: yes
     name: ['subversion', 'thefuck', 'pipenv', 'neovim', 'tmux', 'tmuxinator', 'zsh', 'gpg', 'coreutils', 'curl', 'wget','aria2', 'emacs', 'build-essential' , 'zlib1g-dev', 'libncurses5-dev', 'libgdbm-dev', 'libnss3-dev', 'libssl-dev', 'libreadline-dev' ,'libffi-dev', 'libbz2-dev', 'libsqlite3-dev', 'silversearcher-ag', 'ripgrep', 'fd-find']
-  # ignore_errors: yes
-  #
+  ignore_errors: yes
 
 - name: Install exa with http
   become: yes
@@ -57,7 +48,6 @@
     - { src: 'zsh/.zshrc',dest: ~/.zshrc }
     - { src: 'tmux/.tmux.conf',dest: ~/.tmux.conf }
     - { src: 'nvim',dest: ~/.config/nvim }
-    - { src: 'spacemacs', dest: ~/.spacemacs.d }
     - { src: 'aria2', dest: ~/.config/.aria2 }
 
 - name: Config asdf
